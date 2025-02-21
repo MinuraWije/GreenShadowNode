@@ -41,3 +41,12 @@ model Staff {
   address       String
   contactNumber String
 }
+
+model Field {
+  code     String @id
+  name     String
+  location String
+  size     String
+  image1   String @db.LongText
+  image2   String @db.LongText
+}
