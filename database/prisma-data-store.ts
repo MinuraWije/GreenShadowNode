@@ -3,6 +3,7 @@ import Vehicle from "../models/Vehicle";
 import {Equipment} from "../models/Equipment";
 import {Log} from "../models/Log";
 import {Staff} from "../models/Staff";
+import {Field} from "../models/Field";
 
 const prisma = new PrismaClient();
 
@@ -209,5 +210,57 @@ export async function StaffGet() {
         return await prisma.staff.findMany();
     }catch(err){
         console.log("Error getting all staffs",err);
+    }
+}
+
+export async function FieldAdd(f: Field) {
+    try{
+        const newField = await prisma.field.create({
+            data:{
+                code: f.code,
+                name: f.name,
+                location: f.location,
+                size: f.size,
+                image1: f.image1,
+                image2: f.image2,
+            }
+        });
+    }catch(err){
+        console.log("Error adding field :",err);
+    }
+}
+
+export async function FieldUpdate(code: string ,f: Field) {
+    try {
+        await prisma.field.update({
+            where: {code: code},
+            data: {
+                name: f.name,
+                location: f.location,
+                size: f.size,
+                image1: f.image1,
+                image2: f.image2,
+            }
+        })
+    }catch(err){
+        console.log("Error updating field",err);
+    }
+}
+
+export async function FieldDelete(code: string) {
+    try{
+        await prisma.field.delete({
+            where: {code: code},
+        });
+    }catch(err){
+        console.log("Error deleting field",err);
+    }
+}
+
+export async function FieldGet() {
+    try{
+        return await prisma.field.findMany();
+    }catch(err){
+        console.log("Error getting all fields",err);
     }
 }
