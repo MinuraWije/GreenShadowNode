@@ -8,6 +8,7 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
+    "start": "nodemon server.ts",
     "build": "tsc"
   },
   "devDependencies": {
