@@ -3,6 +3,7 @@ import vehicleRoutes from "./routes/vehicleRoutes"
 import equipmentRoutes from "./routes/equipmentRoutes"
 import logRoutes from "./routes/logRoutes"
 import staffRoutes from "./routes/staffRoutes"
+import fieldRoutes from "./routes/fieldRoutes"
 import fileUpload from "express-fileupload";
 
 const app =  express();
@@ -21,6 +22,7 @@ app.use('/api', vehicleRoutes);
 app.use('/api', equipmentRoutes);
 app.use('/api', logRoutes);
 app.use('/api', staffRoutes);
+app.use('/api', fieldRoutes);
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");

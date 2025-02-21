@@ -31,7 +31,7 @@ export const updateStaff = async(req: Request, res: Response) => {
 export const getStaff = async(req: Request, res: Response) => {
     try{
         const staffs = await staffService.getStaffs();
-        res.json({staffs});
+        res.json({staffs:staffs});
     }catch (error){
         res.status(500).json({error: "Failed to getStaffs " + error});
     }
