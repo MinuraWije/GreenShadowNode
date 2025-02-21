@@ -4,6 +4,7 @@ import {Equipment} from "../models/Equipment";
 import {Log} from "../models/Log";
 import {Staff} from "../models/Staff";
 import {Field} from "../models/Field";
+import {Crop} from "../models/Crop";
 
 const prisma = new PrismaClient();
 
@@ -262,5 +263,59 @@ export async function FieldGet() {
         return await prisma.field.findMany();
     }catch(err){
         console.log("Error getting all fields",err);
+    }
+}
+
+export async function CropAdd(c: Crop) {
+    try{
+        const newCrop = await prisma.crop.create({
+            data:{
+                code: c.code,
+                name: c.name,
+                scientificName: c.scientificName,
+                category: c.category,
+                image: c.image,
+                season: c.season,
+                fieldCode: c.fieldCode,
+            }
+        });
+    }catch(err){
+        console.log("Error adding crop :",err);
+    }
+}
+
+export async function CropUpdate(code: string ,c: Crop) {
+    try {
+        await prisma.crop.update({
+            where: {code: code},
+            data: {
+                name: c.name,
+                scientificName: c.scientificName,
+                category: c.category,
+                image: c.image,
+                season: c.season,
+                fieldCode: c.fieldCode,
+            }
+        })
+    }catch(err){
+        console.log("Error updating crop",err);
+    }
+}
+
+export async function CropDelete(code: string) {
+    try{
+        await prisma.crop.delete({
+            where: {code: code},
+        });
+    }catch(err){
+        console.log("Error deleting crop",err);
+    }
+}
+
+export async function CropGet() {
+    try{
+        return await prisma.crop.findMany();
+    }catch(err){
+        console.log("Error getting all crops",err);
     }
 }
