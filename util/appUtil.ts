@@ -1,5 +1,5 @@
 import {UploadedFile} from "express-fileupload";
-
+import {Request} from "express";
 
 export function extractImg(req: Request) {
     const image = req.files?.img as UploadedFile
