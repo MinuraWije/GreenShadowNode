@@ -49,4 +49,16 @@ model Field {
   size     String
   image1   String @db.LongText
   image2   String @db.LongText
+  crops    Crop[]
+}
+
+model Crop {
+  code           String @id
+  name           String
+  scientificName String
+  category       String
+  image          String @db.LongText
+  season         String
+  fieldCode      String
+  field          Field  @relation(fields: [fieldCode], references: [code], onDelete: Cascade)
 }
