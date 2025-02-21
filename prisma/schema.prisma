@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Vehicle {
+  code          String @id
+  licensePlate  String
+  category      String
+  fuelType      String
+  vehicleStatus String
+}
+
+model Equipment {
+  id     String @id
+  name   String
+  type   String
+  status String
+}
+
+model Log {
+  code        String @id
+  details     String
+  date        String
+  observedImg String @db.LongText
+}
+
+model Staff {
+  id            String @id
+  name          String
+  role          String
+  designation   String
+  gender        String
+  joinedDate    String
+  email         String
+  dob           String
+  address       String
+  contactNumber String
+}
