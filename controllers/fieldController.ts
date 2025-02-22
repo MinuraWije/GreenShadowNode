@@ -5,8 +5,7 @@ import {Field} from "../models/Field";
 
 export const addField  = async(req: Request, res: Response) => {
     const field:Field = req.body;
-    field.image1 = extractImg(req);
-    field.image2 = extractImg(req);
+    field.img = extractImg(req);
     try{
         await fieldService.addField(field);
         res.status(201).json({message: 'Field added successfully.'});
@@ -26,8 +25,7 @@ export const deleteField = async(req: Request, res: Response) => {
 
 export const updateField = async(req: Request, res: Response) => {
     const field:Field = req.body;
-    field.image1 = extractImg(req);
-    field.image2 = extractImg(req);
+    field.img = extractImg(req);
     try{
         await fieldService.updateField(req.params.id,field);
         res.json({message: 'Field updated successfully.'});

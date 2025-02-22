@@ -3,6 +3,5 @@ export class Field {
     name!: string;
     location!: string;
     size!: string;
-    image1!: string;
-    image2!: string;
+    img!: string;
 }
