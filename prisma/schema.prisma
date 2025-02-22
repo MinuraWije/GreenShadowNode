@@ -23,10 +23,10 @@ model Equipment {
 }
 
 model Log {
-  code        String @id
-  details     String
-  date        String
-  observedImg String @db.LongText
+  code    String @id
+  details String
+  date    String
+  img     String @db.LongText
 }
 
 model Staff {
@@ -47,8 +47,7 @@ model Field {
   name     String
   location String
   size     String
-  image1   String @db.LongText
-  image2   String @db.LongText
+  img      String @db.LongText
   crops    Crop[]
 }
 
@@ -57,7 +56,7 @@ model Crop {
   name           String
   scientificName String
   category       String
-  image          String @db.LongText
+  img            String @db.LongText
   season         String
   fieldCode      String
   field          Field  @relation(fields: [fieldCode], references: [code], onDelete: Cascade)
