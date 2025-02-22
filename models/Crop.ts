@@ -3,7 +3,7 @@ export class Crop {
     name!: string;
     scientificName!: string;
     category!: string;
-    image!: string;
+    img!: string;
     season!: string;
     fieldCode!: string;
 }

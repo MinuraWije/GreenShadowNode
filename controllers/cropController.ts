@@ -5,7 +5,7 @@ import {Crop} from "../models/Crop";
 
 export const addCrop  = async(req: Request, res: Response) => {
     const crop:Crop = req.body;
-    crop.image = extractImg(req);
+    crop.img = extractImg(req);
     try{
         await cropService.addCrop(req.body);
         res.status(201).json({message: 'Crop added successfully.'});
@@ -24,6 +24,8 @@ export const deleteCrop = async(req: Request, res: Response) => {
 };
 
 export const updateCrop = async(req: Request, res: Response) => {
+    const crop:Crop = req.body;
+    crop.img = extractImg(req);
     try{
         await cropService.updateCrop(req.params.id,req.body);
         res.json({message: 'Crop updated successfully.'});
