@@ -5,7 +5,7 @@ import {Log} from "../models/Log";
 
 export const addLog  = async(req: Request, res: Response) => {
     const log:Log = req.body;
-    log.observedImg = extractImg(req);
+    log.img = extractImg(req);
     try{
         await logService.addLog(log);
         res.status(201).json({message: 'Log added successfully.'});
@@ -25,7 +25,7 @@ export const deleteLog = async(req: Request, res: Response) => {
 
 export const updateLog = async(req: Request, res: Response) => {
     const log:Log = req.body;
-    log.observedImg = extractImg(req);
+    log.img = extractImg(req);
     try{
         await logService.updateLog(req.params.id,log);
         res.json({message: 'Log updated successfully.'});
