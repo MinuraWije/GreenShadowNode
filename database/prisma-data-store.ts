@@ -113,7 +113,7 @@ export async function LogAdd(l: Log) {
                 code: l.code,
                 details: l.details,
                 date: l.date,
-                observedImg: l.observedImg,
+                img: l.img,
             }
         });
     }catch(err){
@@ -128,7 +128,7 @@ export async function LogUpdate(code: string ,l: Log) {
             data: {
                 details: l.details,
                 date: l.date,
-                observedImg: l.observedImg,
+                img: l.img,
             }
         })
     }catch(err){
@@ -222,8 +222,7 @@ export async function FieldAdd(f: Field) {
                 name: f.name,
                 location: f.location,
                 size: f.size,
-                image1: f.image1,
-                image2: f.image2,
+                img: f.img,
             }
         });
     }catch(err){
@@ -239,8 +238,7 @@ export async function FieldUpdate(code: string ,f: Field) {
                 name: f.name,
                 location: f.location,
                 size: f.size,
-                image1: f.image1,
-                image2: f.image2,
+                img: f.img,
             }
         })
     }catch(err){
@@ -274,7 +272,7 @@ export async function CropAdd(c: Crop) {
                 name: c.name,
                 scientificName: c.scientificName,
                 category: c.category,
-                image: c.image,
+                img: c.img,
                 season: c.season,
                 fieldCode: c.fieldCode,
             }
@@ -292,7 +290,7 @@ export async function CropUpdate(code: string ,c: Crop) {
                 name: c.name,
                 scientificName: c.scientificName,
                 category: c.category,
-                image: c.image,
+                img: c.img,
                 season: c.season,
                 fieldCode: c.fieldCode,
             }
