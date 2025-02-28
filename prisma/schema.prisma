@@ -61,3 +61,9 @@ model Crop {
   fieldCode      String
   field          Field  @relation(fields: [fieldCode], references: [code], onDelete: Cascade)
 }
+
+model User {
+  userID Int @id @default(autoincrement())
+  username String @unique
+  password String
+}
