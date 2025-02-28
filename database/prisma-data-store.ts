@@ -5,6 +5,8 @@ import {Log} from "../models/Log";
 import {Staff} from "../models/Staff";
 import {Field} from "../models/Field";
 import {Crop} from "../models/Crop";
+import User from "../models/User";
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -316,4 +318,27 @@ export async function CropGet() {
     }catch(err){
         console.log("Error getting all crops",err);
     }
+}
+
+export async function verifyUserCredentials(verifyUser: User) {
+    const user : User | null = await prisma.user.findUnique({
+        where: { username: verifyUser.username },
+    });
+    if (!user) {
+        return false;
+    }
+
+    return await bcrypt.compare(verifyUser.password, user.password);
+}
+
+export async function createUser(user : User) {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+
+    const addedUser = await prisma.user.create({
+        data: {
+            username : user.username,
+            password : hashedPassword,
+        },
+    });
+    console.log("User created:", addedUser);
 }
