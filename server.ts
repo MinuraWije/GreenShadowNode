@@ -6,18 +6,29 @@ import staffRoutes from "./routes/staffRoutes"
 import fieldRoutes from "./routes/fieldRoutes"
 import cropRoutes from "./routes/cropRoutes"
 import fileUpload from "express-fileupload";
+import authRoutes, {authenticateToken} from "./routes/authRoutes";
+import cors from 'cors';
 
 const app =  express();
 app.use(express.json());
 
 app.use(fileUpload());
 
-app.use('/', (req, res, next) => {
+/*app.use('/', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', "GET,PUT,POST,DELETE,OPTIONS");
     res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     next();
-});
+});*/
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}))
+
+app.use('/api', authRoutes)
+
+app.use(authenticateToken)
 
 app.use('/api', vehicleRoutes);
 app.use('/api', equipmentRoutes);
