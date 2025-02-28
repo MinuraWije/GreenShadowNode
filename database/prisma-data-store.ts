@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 export async function VehicleAdd(v: Vehicle) {
     try{
-        const newVehicle = await prisma.vehicle.create({
+        return prisma.vehicle.create({
             data:{
                 code: v.code,
                 licensePlate: v.licensePlate,
@@ -26,7 +26,7 @@ export async function VehicleAdd(v: Vehicle) {
 
 export async function VehicleUpdate(code: string ,v: Vehicle) {
     try {
-        await prisma.vehicle.update({
+        return prisma.vehicle.update({
             where: {code: code},
             data: {
                 licensePlate: v.licensePlate,
@@ -42,7 +42,7 @@ export async function VehicleUpdate(code: string ,v: Vehicle) {
 
 export async function VehicleDelete(code: string) {
     try{
-        await prisma.vehicle.delete({
+        return prisma.vehicle.delete({
             where: {code: code},
         });
     }catch(err){
@@ -60,7 +60,7 @@ export async function VehicleGet() {
 
 export async function EquipmentAdd(e: Equipment) {
     try{
-        const newEquipment = await prisma.equipment.create({
+        return prisma.equipment.create({
             data:{
                 id: e.id,
                 name: e.name,
@@ -75,7 +75,7 @@ export async function EquipmentAdd(e: Equipment) {
 
 export async function EquipmentUpdate(id: string ,e: Equipment) {
     try {
-        await prisma.equipment.update({
+        return prisma.equipment.update({
             where: {id: id},
             data: {
                 name: e.name,
@@ -90,7 +90,7 @@ export async function EquipmentUpdate(id: string ,e: Equipment) {
 
 export async function EquipmentDelete(id: string) {
     try{
-        await prisma.equipment.delete({
+        return prisma.equipment.delete({
             where: {id: id},
         });
     }catch(err){
@@ -108,7 +108,7 @@ export async function EquipmentGet() {
 
 export async function LogAdd(l: Log) {
     try{
-        const newLog = await prisma.log.create({
+        return prisma.log.create({
             data:{
                 code: l.code,
                 details: l.details,
@@ -123,7 +123,7 @@ export async function LogAdd(l: Log) {
 
 export async function LogUpdate(code: string ,l: Log) {
     try {
-        await prisma.log.update({
+        return prisma.log.update({
             where: {code: code},
             data: {
                 details: l.details,
@@ -138,7 +138,7 @@ export async function LogUpdate(code: string ,l: Log) {
 
 export async function LogDelete(code: string) {
     try{
-        await prisma.log.delete({
+        return prisma.log.delete({
             where: {code: code},
         });
     }catch(err){
@@ -156,7 +156,7 @@ export async function LogGet() {
 
 export async function StaffAdd(s: Staff) {
     try{
-        const newStaff = await prisma.staff.create({
+        return prisma.staff.create({
             data:{
                 id: s.id,
                 name: s.name,
@@ -177,7 +177,7 @@ export async function StaffAdd(s: Staff) {
 
 export async function StaffUpdate(id: string ,s: Staff) {
     try {
-        await prisma.staff.update({
+        return prisma.staff.update({
             where: {id: id},
             data: {
                 name: s.name,
@@ -198,7 +198,7 @@ export async function StaffUpdate(id: string ,s: Staff) {
 
 export async function StaffDelete(id: string) {
     try{
-        await prisma.staff.delete({
+        return prisma.staff.delete({
             where: {id: id},
         });
     }catch(err){
@@ -216,7 +216,7 @@ export async function StaffGet() {
 
 export async function FieldAdd(f: Field) {
     try{
-        const newField = await prisma.field.create({
+        return prisma.field.create({
             data:{
                 code: f.code,
                 name: f.name,
@@ -232,7 +232,7 @@ export async function FieldAdd(f: Field) {
 
 export async function FieldUpdate(code: string ,f: Field) {
     try {
-        await prisma.field.update({
+        return prisma.field.update({
             where: {code: code},
             data: {
                 name: f.name,
@@ -248,7 +248,7 @@ export async function FieldUpdate(code: string ,f: Field) {
 
 export async function FieldDelete(code: string) {
     try{
-        await prisma.field.delete({
+        return prisma.field.delete({
             where: {code: code},
         });
     }catch(err){
@@ -266,7 +266,7 @@ export async function FieldGet() {
 
 export async function CropAdd(c: Crop) {
     try{
-        const newCrop = await prisma.crop.create({
+        return prisma.crop.create({
             data:{
                 code: c.code,
                 name: c.name,
@@ -284,7 +284,7 @@ export async function CropAdd(c: Crop) {
 
 export async function CropUpdate(code: string ,c: Crop) {
     try {
-        await prisma.crop.update({
+        return prisma.crop.update({
             where: {code: code},
             data: {
                 name: c.name,
@@ -302,7 +302,7 @@ export async function CropUpdate(code: string ,c: Crop) {
 
 export async function CropDelete(code: string) {
     try{
-        await prisma.crop.delete({
+        return  prisma.crop.delete({
             where: {code: code},
         });
     }catch(err){
