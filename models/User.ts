@@ -1,5 +1,5 @@
 export default class User {
-    userID?: number
+    id?: number
     username!: string
     password!: string
 }
