@@ -7,8 +7,8 @@ export const addLog  = async(req: Request, res: Response) => {
     const log:Log = req.body;
     log.img = extractImg(req);
     try{
-        await logService.addLog(log);
-        res.status(201).json({message: 'Log added successfully.'});
+        const data = await logService.addLog(log)
+        res.status(201).json(data);
     }catch (error){
         res.status(500).json({error: "Failed to add log " + error});
     }
