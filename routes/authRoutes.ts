@@ -1,12 +1,13 @@
 import express from "express";
 import User from "../models/User";
 import {createUser, verifyUserCredentials} from "../database/prisma-data-store";
-import jwt, {Secret} from 'jsonwebtoken';
+import jwt,{Secret} from 'jsonwebtoken';
 
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
     console.log('Login')
+    console.log(req.body); // Log to check structure
     const username = req.body.user.username;
     const password = req.body.user.password;
 
@@ -16,11 +17,11 @@ router.post("/login", async (req, res) => {
         const isVerified =  await verifyUserCredentials(user);
 
         if(isVerified){
-            const token = jwt.sign({ username }, process.env.SECRET_KEY as Secret, {expiresIn: "1m"});
+            const token = jwt.sign({ username }, process.env.SECRET_KEY as Secret, {expiresIn: "2m"});
             const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN as Secret, {expiresIn: "7d"});
             res.json({accessToken : token, refreshToken : refreshToken});
         }else{
-            res.sendStatus(403).send('Invalid credentials')
+            res.status(403).send('Invalid credentials');
         }
     }catch(err){
         console.log(err);
@@ -63,7 +64,7 @@ export function authenticateToken(req : express.Request, res : express.Response,
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];
 
-    console.log("TOKEN "+token);
+    //console.log("TOKEN "+token);
     if(!token)res.status(401).send('No token provided');
     try{
         const payload = jwt.verify(token as string, process.env.SECRET_KEY as Secret) as {username: string, iat: number};
