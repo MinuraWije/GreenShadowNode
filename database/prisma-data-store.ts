@@ -107,6 +107,7 @@ export async function EquipmentGet() {
 }
 
 export async function LogAdd(l: Log) {
+    console.log(l.img);
     try{
         return prisma.log.create({
             data:{
