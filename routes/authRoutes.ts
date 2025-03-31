@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
         const isVerified =  await verifyUserCredentials(user);
 
         if(isVerified){
-            const token = jwt.sign({ username }, process.env.SECRET_KEY as Secret, {expiresIn: "2m"});
+            const token = jwt.sign({ username }, process.env.SECRET_KEY as Secret, {expiresIn: "15m"});
             const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN as Secret, {expiresIn: "7d"});
             console.log(token);
             res.json({accessToken : token, refreshToken : refreshToken});
@@ -54,7 +54,7 @@ router.post("/refresh-token", async (req, res) => {
 
     try{
         const payload = jwt.verify(refresh_token as string, process.env.REFRESH_TOKEN as Secret) as {username: string, iat: number};
-        const token = jwt.sign({ username: payload.username }, process.env.SECRET_KEY as Secret, {expiresIn: "1m"});
+        const token = jwt.sign({ username: payload.username }, process.env.SECRET_KEY as Secret, {expiresIn: "15m"});
         res.json({accessToken : token});
     }catch(err){
         console.log(err);
@@ -65,7 +65,7 @@ export function authenticateToken(req : express.Request, res : express.Response,
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];
 
-    //console.log("TOKEN "+token);
+    console.log("TOKEN "+token);
     if(!token)res.status(401).send('No token provided');
     try{
         const payload = jwt.verify(token as string, process.env.SECRET_KEY as Secret) as {username: string, iat: number};
