@@ -7,8 +7,8 @@ export const addLog  = async(req: Request, res: Response) => {
     const log:Log = req.body;
     log.img = extractImg(req);
     try{
-        await logService.addLog(log);
-        res.status(201).json({message: 'Log added successfully.'});
+        const saveLog = await logService.addLog(log);
+        res.status(201).json(saveLog);
     }catch (error){
         res.status(500).json({error: "Failed to add log " + error});
     }
@@ -16,8 +16,8 @@ export const addLog  = async(req: Request, res: Response) => {
 
 export const deleteLog = async(req: Request, res: Response) => {
     try{
-        await logService.deleteLog(req.params.id);
-        res.json({message: 'Log deleted successfully.'});
+        const deleteLog = await logService.deleteLog(req.params.id);
+        res.json(deleteLog);
     }catch (error){
         res.status(500).json({error: "Failed to delete log " + error});
     }
@@ -27,8 +27,8 @@ export const updateLog = async(req: Request, res: Response) => {
     const log:Log = req.body;
     log.img = extractImg(req);
     try{
-        await logService.updateLog(req.params.id,log);
-        res.json({message: 'Log updated successfully.'});
+        const updateLog = await logService.updateLog(req.params.id,log);
+        res.status(200).json(updateLog);
     }catch (error){
         res.status(500).json({error: "Failed to update log " + error});
     }

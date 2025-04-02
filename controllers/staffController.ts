@@ -3,8 +3,8 @@ import * as staffService from "../services/staffService"
 
 export const addStaff  = async(req: Request, res: Response) => {
     try{
-        await staffService.addStaff(req.body);
-        res.status(201).json({message: 'Staff added successfully.'});
+        const saveStaff = await staffService.addStaff(req.body);
+        res.status(201).json(saveStaff);
     }catch (error){
         res.status(500).json({error: "Failed to addStaff " + error});
     }
@@ -12,8 +12,8 @@ export const addStaff  = async(req: Request, res: Response) => {
 
 export const deleteStaff = async(req: Request, res: Response) => {
     try{
-        await staffService.deleteStaff(req.params.id);
-        res.json({message: 'Staff deleted successfully.'});
+        const deleteStaff = await staffService.deleteStaff(req.params.id);
+        res.json(deleteStaff);
     }catch (error){
         res.status(500).json({error: "Failed to deleteStaff " + error});
     }
@@ -21,8 +21,8 @@ export const deleteStaff = async(req: Request, res: Response) => {
 
 export const updateStaff = async(req: Request, res: Response) => {
     try{
-        await staffService.updateStaff(req.params.id,req.body);
-        res.json({message: 'Staff updated successfully.'});
+        const updateStaff = await staffService.updateStaff(req.params.id,req.body);
+        res.json(updateStaff);
     }catch (error){
         res.status(500).json({error: "Failed to updateStaff " + error});
     }

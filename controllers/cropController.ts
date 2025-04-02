@@ -7,8 +7,8 @@ export const addCrop  = async(req: Request, res: Response) => {
     const crop:Crop = req.body;
     crop.img = extractImg(req);
     try{
-        await cropService.addCrop(req.body);
-        res.status(201).json({message: 'Crop added successfully.'});
+        const saveCrop = await cropService.addCrop(req.body);
+        res.status(201).json(saveCrop);
     }catch (error){
         res.status(500).json({error: "Failed to add crop " + error});
     }
@@ -16,8 +16,8 @@ export const addCrop  = async(req: Request, res: Response) => {
 
 export const deleteCrop = async(req: Request, res: Response) => {
     try{
-        await cropService.deleteCrop(req.params.id);
-        res.json({message: 'Crop deleted successfully.'});
+        const deleteCrop = await cropService.deleteCrop(req.params.id);
+        res.json(deleteCrop);
     }catch (error){
         res.status(500).json({error: "Failed to delete crop " + error});
     }
@@ -27,8 +27,8 @@ export const updateCrop = async(req: Request, res: Response) => {
     const crop:Crop = req.body;
     crop.img = extractImg(req);
     try{
-        await cropService.updateCrop(req.params.id,req.body);
-        res.json({message: 'Crop updated successfully.'});
+        const updateCrop = await cropService.updateCrop(req.params.id,req.body);
+        res.json(updateCrop);
     }catch (error){
         res.status(500).json({error: "Failed to update crop " + error});
     }

@@ -3,8 +3,8 @@ import * as vehicleService from "../services/vehicleService"
 
 export const addVehicle  = async(req: Request, res: Response) => {
     try{
-        await vehicleService.addVehicle(req.body);
-        res.status(201).json({message: 'Vehicle added successfully.'});
+        const saveVehicle = await vehicleService.addVehicle(req.body);
+        res.status(201).json(saveVehicle);
     }catch (error){
         res.status(500).json({error: "Failed to addVehicle " + error});
     }
@@ -12,8 +12,8 @@ export const addVehicle  = async(req: Request, res: Response) => {
 
 export const deleteVehicle = async(req: Request, res: Response) => {
     try{
-        await vehicleService.deleteVehicle(req.params.id);
-        res.json({message: 'Vehicle deleted successfully.'});
+        const deleteVehicle= await vehicleService.deleteVehicle(req.params.id);
+        res.json(deleteVehicle);
     }catch (error){
         res.status(500).json({error: "Failed to deleteVehicle " + error});
     }
@@ -21,8 +21,8 @@ export const deleteVehicle = async(req: Request, res: Response) => {
 
 export const updateVehicle = async(req: Request, res: Response) => {
     try{
-        await vehicleService.updateVehicle(req.params.id,req.body);
-        res.json({message: 'Vehicle updated successfully.'});
+        const updateVehicle = await vehicleService.updateVehicle(req.params.id,req.body);
+        res.json(updateVehicle);
     }catch (error){
         res.status(500).json({error: "Failed to updateVehicle " + error});
     }
